@@ -1,0 +1,69 @@
+:global {
+  @import 'base';
+  @import '~normalize.css/normalize';
+
+  // Some best-practice CSS that's useful for most apps
+  // Just remove them if they're not what you want
+  html {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  body{
+    //font-family : "AvenirNextLTW02-Regular", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
+    font-family : Lato,Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,\\5FAE\8F6F\96C5\9ED1,Arial,sans-serif;
+    color : #666;
+    font-size : 14px;
+    line-height : 1.5;
+    background : #fbfbfb;
+  }
+
+  h1,h2,h3,h4,h5,
+  p{
+    margin : 0;
+    padding : 0;
+  }
+
+  ul,ol{
+    margin : 0;
+    padding : 0;
+    list-style : none;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  a{
+    text-decoration : none;
+    color : #4a91c2;
+  }
+
+  hr{
+    background: #e9e9e9;
+    height: 1px;
+    border: 0;
+    margin: 0 0 40px;
+  }
+
+  input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { 
+    color:    #666;
+  }
+  input:-moz-placeholder, textarea:-moz-placeholder { 
+    color:    #666;
+  }
+  input::-moz-placeholder, textarea::-moz-placeholder { 
+    color:    #666;
+  }
+  input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
+    color:    #666;
+  }
+}

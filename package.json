@@ -13,6 +13,7 @@
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
+    "premake": "node ./scripts/make-data.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "betterScripts": {
@@ -23,7 +24,7 @@
       }
     },
     "deploy": {
-      "command": "npm run clean && npm run compile",
+      "command": "npm run premake && npm run clean && npm run compile",
       "env": {
         "DEBUG": "app:*"
       }
@@ -43,7 +44,7 @@
       }
     },
     "start": {
-      "command": "babel-node bin/server",
+      "command": "npm run premake && babel-node bin/server",
       "env": {
         "DEBUG": "app:*"
       }
@@ -66,6 +67,7 @@
   "author": "Peng",
   "license": "ISC",
   "dependencies": {
+    "antd-mobile": "^0.9.12",
     "es6-promise": "^3.2.1",
     "history": "^3.2.1",
     "normalize.css": "^5.0.0",
@@ -78,6 +80,7 @@
     "redux-thunk": "^2.0.0"
   },
   "devDependencies": {
+    "antd-md-loader": "^0.7.7",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.1.0",
@@ -106,6 +109,7 @@
     "html-webpack-plugin": "^2.22.0",
     "ip": "^1.1.2",
     "json-loader": "^0.5.4",
+    "jsonml-to-react-component": "^0.2.6",
     "koa": "^2.0.0-alpha.3",
     "koa-connect-history-api-fallback": "^0.3.0",
     "koa-convert": "^1.2.0",
@@ -113,8 +117,11 @@
     "koa-session": "^3.4.0",
     "koa-static": "^3.0.0",
     "koa-static-cache": "^3.1.7",
+    "mark-twain": "^1.1.5",
+    "mkdirp": "^0.5.1",
     "node-sass": "^4.0.0",
     "postcss-loader": "^1.1.0",
+    "ramda": "^0.22.1",
     "redbox-react": "^1.2.10",
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.0",

@@ -15,7 +15,11 @@ const webpackConfig = {
   target: 'web',
   devtool: config.compiler_devtool,
   resolve: {
-    root: paths.client(),
+    //root: paths.client(),
+    alias : {
+      'components' : paths.client('components'),
+      '_data' : paths.base('_data')
+    },
     extensions: ['', '.js', '.jsx', '.json']
   },
   // externals: {
@@ -138,6 +142,10 @@ webpackConfig.module.loaders = [{
   test: /\.json$/,
   loader: 'json'
 },
+{
+    test : /\.md$/,
+    loaders : ['babel', require.resolve('antd-md-loader')]
+}
 // {
 //     test : /\.md$/,
 //     loader: 'raw'

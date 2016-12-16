@@ -3,6 +3,8 @@
 
 node_modules
 
+_data
+_site
 dist
 coverage
 

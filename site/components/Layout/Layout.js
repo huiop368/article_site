@@ -1,11 +1,13 @@
 import React from 'react'
 import Header from 'components/Header'
-import './Layout.scss'
+import classes from './Layout.scss'
+
+import '../../styles/core.scss'
 
 export const CoreLayout = ({ children }) => (
-  <div className='container'>
+  <div className={classes.container}>
     <Header />
-    <div className='core-layout__viewport'>
+    <div className={classes.core_layout__viewport}>
       {children}
     </div>
   </div>

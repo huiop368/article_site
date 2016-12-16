@@ -1,11 +1,13 @@
-import React from 'react'
-import './Home.scss'
+import React, {Component}   from 'react'
+import classes              from './Home.scss'
 
-export const Home = () => (
-  <div>
-    <h4>Welcome!</h4>
-    <p>Doc site preview</p>
-  </div>
-)
+export default class Home extends Component {
 
-export default Home
+    render (){
+        return (
+            <div className={classes.home_container}>
+                <h1>Welcome, Its your home page</h1>
+            </div>                 
+        )
+    }
+}
