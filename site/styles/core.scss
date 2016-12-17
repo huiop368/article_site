@@ -42,6 +42,15 @@
     box-sizing: inherit;
   }
 
+  .clearfix:after{
+    display : block;
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+    content : " ";
+  }
+
   a{
     text-decoration : none;
     color : #4a91c2;

@@ -70,7 +70,7 @@ export default {
   indexRoute  : { component : Home },
   childRoutes : [
     { 
-        path : '/components',
+        path : '/docs/components',
         component : generateMainContainer(componentsData),
         childRoutes : [
             { path : ':children', component : getChildrenWrapper(componentsData)}

@@ -92,7 +92,7 @@ function buildDemosList(dirs, outputPath) {
     mkdirp.sync('./_data');
 
     buildCommon([
-        './components',
+        './docs/components',
         './docs/react',
         //'./CHANGELOG.md',
       ], './_data/components-list.js');
@@ -107,7 +107,7 @@ function buildDemosList(dirs, outputPath) {
 
     // Build demo list
     buildDemosList([
-        './components'
+        './docs/components'
       ], './_data/demos-list.js');
 
 }()

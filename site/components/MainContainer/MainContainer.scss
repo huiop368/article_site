@@ -1,8 +1,11 @@
 .main_container{
-    height :100%;
+    min-height : 500px;
+    margin: 0 40px;
+    background-color: #fff;
+    padding-top : 20px;
+
     .sider_bar{
         float : left;
-        height :100%;
         width : 220px;
         margin-right :20px;
         background-color : #fff;
@@ -10,7 +13,7 @@
     }
 
     .container{
-        padding :10px 20px 10px 0;
+        padding :0 20px 10px 0;
         overflow : hidden;
     }
 }
