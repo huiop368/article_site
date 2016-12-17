@@ -1,0 +1,11 @@
+.menu_list{
+    a{
+        display: block;
+        color: #666;
+        transition: color .3s ease    
+    }
+
+    .active_link{
+        color: #1c81e5;
+    }
+}

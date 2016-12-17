@@ -99,7 +99,7 @@ function buildDemosList(dirs, outputPath) {
 
     const extra = ['design', 'practice', 'pattern', 'spec', 'resource'];
 
-    extra.forEach((r) => {
+    extra.forEach( r => {
       if (fs.existsSync(`./docs/${r}`)) {
         buildCommon(`./docs/${r}`, `./_data/${r}.js`);
       }

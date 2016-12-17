@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
+import toReactComponent     from 'jsonml-to-react-component'
 import classes              from './ComponentDoc.scss'
 
 export default class ComponentDoc extends Component {
 
     componentDidMount (){
-        const { doc } = this.props
         
-        //console.log(doc)
     }
 
     render (){
+        const { doc : { description } } = this.props
+
         return (
             <div>
-               ComponentDoc 
+               {
+                    toReactComponent(['section', { className: 'markdown' }].concat(description))
+               }
             </div>        
         )
     }

@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
+import MenuItem             from 'components/MenuItem'
 import classes              from './MainContainer.scss'
 
 export default class MainContainer extends Component {
 
     componentDidMount (){
-        const { menuItems } = this.props
         
-        console.log(menuItems)
     }
 
     render (){
+        const { menuItems } = this.props
+
         return (
             <div className={classes.main_container}>
                 <div className={classes.sider_bar}>
-                    siderBar
+                    <MenuItem itemObj={menuItems} />
                 </div>
 
                 <div className={classes.container}>

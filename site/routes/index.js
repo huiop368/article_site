@@ -38,7 +38,6 @@ function getMenuItems(data){
         }
       });
 
-    console.log(menuItems)
     return menuItems
 }
 
