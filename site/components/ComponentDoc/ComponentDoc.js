@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import toReactComponent     from 'jsonml-to-react-component'
+import demosData            from '_data/demos-list'
 import classes              from './ComponentDoc.scss'
 
 export default class ComponentDoc extends Component {
