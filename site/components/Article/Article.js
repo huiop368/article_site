@@ -8,7 +8,7 @@ export default class Article extends Component {
         const { content : { meta, description, intro } } = this.props
 
         return (
-            <article className={classes.markdown}>
+            <article className="markdown">
                 <h1>
                   {meta.english} {meta.chinese}
                   {
