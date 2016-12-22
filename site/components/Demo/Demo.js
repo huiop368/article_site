@@ -7,23 +7,40 @@ export default class Demo extends Component {
 
     constructor (props){
        super(props) 
+
+       this.state = {
+         expand : false
+       }
+    }
+
+    handleClickArrow = (e) => {
+        this.setState({expand : !this.state.expand})
     }
 
     render (){
-        const { meta, pathname, intro, highlightedCode } = this.props
+        const { meta, pathname, intro, highlightedCode, preview } = this.props
+        const { expand } = this.state
 
         const highlightClass = classname({
             'highlight-wrapper' : true,
-            'highlight-wrapper-extend' : false 
+            'highlight-wrapper-expand' :  expand
         })
+
+        const codeBoxClass = classname({
+            'code-box' : true,
+            'expand' : expand
+        })
+
+        console.log(preview)
         
         return (
-            <section className="code-box">
+            <section className={codeBoxClass}>
                 <section className="code-box-meta markdown">
                     <div className="code-box-title">{meta.title}</div>
                     {
                         toReactComponent(['div'].concat(intro))
                     }
+                    <span className="bdicon bdicon-arrow" onClick={this.handleClickArrow}></span>
                 </section>
 
                 <section className={highlightClass}>
@@ -35,6 +52,10 @@ export default class Demo extends Component {
                         </pre>
                     </div>
                 </section>
+
+                {
+                    React.cloneElement(preview)
+                }
             </section>        
         )   
     }

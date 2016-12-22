@@ -1,0 +1,36 @@
+$icon-url               : "//at.alicdn.com/t/font_1457169990_5499172";
+
+.bdicon{
+  display: inline-block;
+  font-style: normal;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+
+  &:before {
+    display: block;
+    font-family: "bdicon" !important;
+  }
+}
+
+// font-face
+@font-face {
+  font-family: 'bdicon';
+  src: url('${icon-url}.eot'); /* IE9*/
+  src: url('${icon-url}.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('${icon-url}.woff') format('woff'), /* chrome、firefox */
+  url('${icon-url}.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('${icon-url}.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+
+.bdicon-qrcode:before               {content:"\e6a5";}
+.bdicon-circle-o-right:before       {content:"\e616";}
+.bdicon-circle-o-up:before          {content:"\e618";}
+.bdicon-circle-o-down:before        {content:"\e617";}
+.bdicon-circle-o-left:before        {content:"\e619";}
+.bdicon-arrow:before                {content:"\e603";}
+.bdicon-cross:before                {content: "\E62D";}
+.bdicon-github:before               {content:"\E674";}

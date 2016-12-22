@@ -1,6 +1,7 @@
 :global {
   @import 'base';
   @import 'highlight';
+  @import 'fonts';
   @import 'demo';
   @import '~normalize.css/normalize';
 
@@ -23,7 +24,7 @@
     color : #666;
     font-size : 14px;
     line-height : 1.5;
-    background : #fbfbfb;
+    background : #f7f7f7;
   }
 
   h1,h2,h3,h4,h5,
@@ -77,4 +78,5 @@
   input:-ms-input-placeholder, textarea:-ms-input-placeholder { 
     color:    #666;
   }
+
 }

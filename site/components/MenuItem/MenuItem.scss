@@ -1,11 +1,37 @@
 .menu_list{
     a{
         display: block;
+        height : 40px;
+        line-height : 40px;
+        padding-left : 24px;
         color: #666;
-        transition: color .3s ease    
+        transition: background-color .3s ease;
+
+        &:hover{
+            background-color: rgba(30, 139, 247, 0.07);
+        }
     }
 
     .active_link{
-        color: #1c81e5;
+        color : #1c81e5;
+        border-right: 2px solid #1c81e5;
+    }
+}
+
+.menu_sub_wrapper{
+    h3{
+        height : 40px;
+        line-height : 40px;
+        font-size : 14px;
+        padding-left : 24px;
+        transition: background-color .3s ease;
+
+        &:hover{
+            background-color: rgba(30, 139, 247, 0.07);
+        }
+    }
+
+    a{
+        padding-left : 48px;
     }
 }

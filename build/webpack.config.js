@@ -18,6 +18,7 @@ const webpackConfig = {
     //root: paths.client(),
     alias : {
       'components' : paths.client('components'),
+      'modules' : paths.base('node_modules'),
       '_data' : paths.base('_data')
     },
     extensions: ['', '.js', '.jsx', '.json']
@@ -157,7 +158,8 @@ webpackConfig.module.loaders = [{
 // ------------------------------------
 // We use cssnano with the postcss loader, so we tell
 // css-loader not to duplicate minimization.
-const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
+//const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
+const BASE_CSS_LOADER = 'css?-minimize'
 
 // Add any packge names here whose styles need to be treated as CSS modules.
 // These paths will be combined into a single regex.

@@ -37,7 +37,7 @@ export default class MenuItem extends Component {
                 const val = obj[type]
 
                 ret.push(
-                    <div key={i}>
+                    <div key={i} className={classes.menu_sub_wrapper}>
                         <h3>{type}</h3>
                         <ul className={classes.menu_list}>
                             {
