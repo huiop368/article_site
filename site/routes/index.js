@@ -5,14 +5,19 @@ import MainContainer    from 'components/MainContainer'
 import Article          from 'components/Article'
 import ComponentDoc     from 'components/ComponentDoc'
 
-import componentsData   from '_data/components-list'
+import componentsData   from '_data/components'
 import designData       from '_data/design'
 import demosList        from '_data/demos-list'
+
+import configs          from '../../site.config.js'
+
 
 // Helps
 // --------------------------------
 const pathToFile = {};
 Object.keys({}).forEach((key) => pathToFile[redirects[key]] = key)
+
+// 未来 for changlog
 pathToFile['components/changelog'] = './CHANGELOG'
 
 function getMenuItems(data){
@@ -64,35 +69,81 @@ function generateMainContainer(data){
     }
 }
 
-export default {
+const routeConfigs = {
   path        : '/',
   component   : Layout,
   indexRoute  : { component : Home },
-  childRoutes : [
-    { 
-        path : '/docs/components',
-        component : generateMainContainer(componentsData),
-        childRoutes : [
-            { path : ':children', component : getChildrenWrapper(componentsData)}
-        ]
-    },
-
-    {
-        path : '/docs/react',
-        indexRoute : {onEnter: (nextState, replace) => replace('/docs/react/introduce')},
-        component : generateMainContainer(componentsData),
-        childRoutes : [
-            { path : ':children', component : getChildrenWrapper(componentsData)}
-        ]
-    },
-
-    {
-        path : '/docs/design',
-        indexRoute : {onEnter: (nextState, replace) => replace('/docs/design/color')},
-        component : generateMainContainer(designData),
-        childRoutes : [
-            { path : ':children', component : getChildrenWrapper(designData)}
-        ]
-    }
-  ]
+  childRoutes : []
 }
+
+
+const { docDirList } = configs 
+const allDirs = docDirList.reduce((a, b) => a.concat(b))
+
+let dataObj = {}
+
+docDirList.forEach(item => { 
+    const isArr = Array.isArray(item) 
+    const key = isArr ? item[0] : item
+
+    if(isArr){
+        item.forEach(name => {
+            dataObj[`${name}`] = item[0]
+        })
+    }else{
+        dataObj[item] = item
+    }
+
+})
+
+allDirs.forEach(name => {
+    const data = require(`_data/${dataObj[name]}`)
+
+    routeConfigs.childRoutes.push({
+        path : `/docs/${name}`,
+        component : generateMainContainer(data),
+        childRoutes : [
+            { path : ':children', component : getChildrenWrapper(data)}
+        ]
+    })
+})
+
+
+
+export default routeConfigs
+
+/**
+ *@Configs looks like this, expect indexRoute
+ */
+// export default {
+//   path        : '/',
+//   component   : Layout,
+//   indexRoute  : { component : Home },
+//   childRoutes : [
+//     { 
+//         path : '/docs/components',
+//         component : generateMainContainer(componentsData),
+//         childRoutes : [
+//             { path : ':children', component : getChildrenWrapper(componentsData)}
+//         ]
+//     },
+
+//     {
+//         path : '/docs/react',
+//         indexRoute : {onEnter: (nextState, replace) => replace('/docs/react/introduce')},
+//         component : generateMainContainer(componentsData),
+//         childRoutes : [
+//             { path : ':children', component : getChildrenWrapper(componentsData)}
+//         ]
+//     },
+
+//     {
+//         path : '/docs/design',
+//         indexRoute : {onEnter: (nextState, replace) => replace('/docs/design/color')},
+//         component : generateMainContainer(designData),
+//         childRoutes : [
+//             { path : ':children', component : getChildrenWrapper(designData)}
+//         ]
+//     }
+//   ]
+// }

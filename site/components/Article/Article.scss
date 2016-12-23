@@ -58,7 +58,7 @@
 
     .markdown p,
     .markdown pre {
-      margin: 0;
+      margin: 1em 0;
     }
 
     .markdown ul > li {
@@ -89,7 +89,6 @@
     .markdown code {
       margin: 0 3px;
       background: #f7f7f7;
-      padding: 1px 6px;
       border-radius: 3px;
       color: #777;
       font-size: .8rem;

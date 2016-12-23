@@ -8,6 +8,8 @@ const exec = require('child_process').exec
 const utils = require('./utils');
 const MT = require('mark-twain');
 
+const configs = require('../site.config')
+
 function buildCommon(dirs, outputFile, flag) {
   const mds = utils.findMDFile(dirs, true)
           .filter((file) => !/\/demo$/i.test(path.dirname(file)));
@@ -91,23 +93,36 @@ function buildDemosList(dirs, outputPath) {
 
     mkdirp.sync('./_data');
 
-    buildCommon([
-        './docs/components',
-        './docs/react',
-        //'./CHANGELOG.md',
-      ], './_data/components-list.js');
+    // buildCommon([
+    //     './docs/components',
+    //     './docs/react',
+    //   ], './_data/components-list.js');
 
-    const extra = ['design', 'practice', 'pattern', 'spec', 'resource'];
+    // const extra = ['design', 'practice', 'pattern', 'spec', 'resource'];
 
-    extra.forEach( r => {
-      if (fs.existsSync(`./docs/${r}`)) {
-        buildCommon(`./docs/${r}`, `./_data/${r}.js`);
-      }
-    });
+    // extra.forEach( r => {
+    //   if (fs.existsSync(`./docs/${r}`)) {
+    //     buildCommon(`./docs/${r}`, `./_data/${r}.js`);
+    //   }
+    // });
 
-    // Build demo list
-    buildDemosList([
-        './docs/components'
-      ], './_data/demos-list.js');
+    const docDirList = configs.docDirList
+    
+    docDirList.forEach(dir => {
+        const ret = Array.isArray(dir) ? dir : [dir]
+        const dirs = ret.map(name => `./docs/${name}`)
+
+        buildCommon(dirs, `./_data/${ret[0]}.js`)
+    })
+    
+    
+    const demoDir = configs.demoDir
+
+    if(demoDir){
+        // Build demo list
+        buildDemosList([
+            `./docs/${demoDir}`
+          ], './_data/demos-list.js');
+    }
 
 }()

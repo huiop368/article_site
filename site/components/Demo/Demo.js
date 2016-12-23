@@ -31,8 +31,6 @@ export default class Demo extends Component {
             'expand' : expand
         })
 
-        console.log(preview)
-        
         return (
             <section className={codeBoxClass}>
                 <section className="code-box-meta markdown">
@@ -54,7 +52,7 @@ export default class Demo extends Component {
                 </section>
 
                 {
-                    React.cloneElement(preview)
+                    //React.cloneElement(preview)
                 }
             </section>        
         )   

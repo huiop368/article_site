@@ -16,12 +16,12 @@ const webpackConfig = {
   devtool: config.compiler_devtool,
   resolve: {
     //root: paths.client(),
+    modulesDirectories: ['node_modules', paths.base('node_modules')],
     alias : {
       'components' : paths.client('components'),
-      'modules' : paths.base('node_modules'),
       '_data' : paths.base('_data')
     },
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', '.web.js', '.js', '.jsx', '.json']
   },
   // externals: {
   //   "react": "React",

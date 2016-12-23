@@ -1,4 +1,6 @@
 .container{
+    height : 100%;
     .core_layout_viewport{
+        min-height : calc(100% - 160px)
     }   
 }

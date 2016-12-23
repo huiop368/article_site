@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist _data",
     "compile": "better-npm-run compile",
     "lint": "eslint src tests server",
     "lint:fix": "npm run lint -- --fix",
@@ -24,7 +24,7 @@
       }
     },
     "deploy": {
-      "command": "npm run premake && npm run clean && npm run compile",
+      "command": "npm run clean && npm run premake && npm run compile",
       "env": {
         "DEBUG": "app:*"
       }
@@ -44,7 +44,7 @@
       }
     },
     "start": {
-      "command": "npm run premake && babel-node bin/server",
+      "command": "npm run clean && npm run premake && babel-node bin/server",
       "env": {
         "DEBUG": "app:*"
       }

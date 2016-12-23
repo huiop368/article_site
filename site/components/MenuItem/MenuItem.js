@@ -13,7 +13,8 @@ export default class MenuItem extends Component {
                 <ul className={classes.menu_list}>
                     {
                         ret.map((item, i) => {
-                            const path = item.fileName.slice(0, item.fileName.lastIndexOf('/'))
+                            //const path = item.fileName.slice(0, item.fileName.lastIndexOf('/'))
+                            const path = this.normalize(item.fileName)
                             return <li key={i}><Link to={`/${path}`} activeClassName={classes.active_link}>{item.english} {item.chinese || ''}</Link></li>
                         })
                     }
@@ -42,7 +43,8 @@ export default class MenuItem extends Component {
                         <ul className={classes.menu_list}>
                             {
                                 val.map((item, i) => {
-                                    const path = item.fileName.slice(0, item.fileName.lastIndexOf('/'))
+                                    //const path = item.fileName.slice(0, item.fileName.lastIndexOf('/'))
+                                    const path = this.normalize(item.fileName)
                                     return <li key={i}><Link to={`/${path}`} activeClassName={classes.active_link}>{item.english} {item.chinese || ''}</Link></li>
                                 })
                             }
@@ -54,6 +56,13 @@ export default class MenuItem extends Component {
         
 
         return <div>{ret}</div>
+    }
+
+    normalize (fileName){
+        const bIndexFile = /index\.md/.test(fileName)
+        const sign = bIndexFile ? '/' : '.md'
+
+        return fileName.slice(0, fileName.lastIndexOf(sign))
     }
     
     render (){

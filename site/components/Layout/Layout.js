@@ -5,9 +5,9 @@ import classes from './Layout.scss'
 
 import '../../styles/core.scss'
 
-export const CoreLayout = ({ children }) => (
+export const CoreLayout = ({ children, ...props }) => (
   <div className={classes.container}>
-    <Header />
+    <Header {...props} />
     <div className={classes.core_layout_viewport}>
       {children}
     </div>

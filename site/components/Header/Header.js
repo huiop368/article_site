@@ -1,10 +1,20 @@
 import React, {Component} from 'react'
 import { IndexLink, Link } from 'react-router'
+import classnames           from 'classnames'
 import classes from './Header.scss'
 
 export default class Header extends Component {
     
     render (){
+        const { location : {pathname} } = this.props
+
+        const reactClass = classnames({
+            [classes.nav_item_active] : /docs\/(components|react)/.test(pathname)
+        })
+
+        const designClass = classnames({
+            [classes.nav_item_active] : /docs\/design/.test(pathname)
+        })
 
         return (
             <div className={classes.header}>
@@ -20,10 +30,10 @@ export default class Header extends Component {
                             </IndexLink>        
                         </li>
                         <li className={classes.nav_item}>
-                            <Link to='/docs/react' activeClassName={classes.nav_item_active}>Components</Link>
+                            <Link to='/docs/react/introduce' className={reactClass}>Components</Link>
                         </li>
                         <li className={classes.nav_item}>
-                            <Link to='/docs/design' activeClassName={classes.nav_item_active}>Design</Link>
+                            <Link to='/docs/design/color' className={designClass}>Design</Link>
                         </li>
                     </ul>
                     
