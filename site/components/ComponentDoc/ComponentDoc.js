@@ -9,8 +9,12 @@ export default class ComponentDoc extends Component {
     constructor (props){
         super(props)
 
+        const { doc : { meta } } = props
+        const path = meta.fileName.split('/')[2]
+
         this.state = {
-            currentIndex : 0
+            currentIndex : 0,
+            iframeUrl : `/preview.html#/${path}/0`
         }
     }
 
@@ -19,14 +23,18 @@ export default class ComponentDoc extends Component {
     }
 
     handleClickDemo = (i, e) => {
+        const { doc : { meta } } = this.props
+        const path = meta.fileName.split('/')[2]
+
         this.setState({
-            currentIndex : i
+            currentIndex : i,
+            iframeUrl : `/preview.html#/${path}/${i}`
         })
     }
 
     render (){
         const { doc : { meta, description, intro, api } } = this.props
-        const { currentIndex } = this.state
+        const { currentIndex, iframeUrl } = this.state
         const demos = (demosData[meta.fileName] || []).filter(demo => !demo.meta.hidden)
         const demoSort = demos.sort((a, b) => parseInt(a.meta.order, 10) - parseInt(b.meta.order, 10) )
 
@@ -61,7 +69,7 @@ export default class ComponentDoc extends Component {
                             </div>
                             
                             <div className={classes.demo_preview_scroller}>
-                                <iframe id="demoFrame" name="demoFrame" style={{width: '318px', height: '548px'}}></iframe>
+                                <iframe id="demoFrame" name="demoFrame" style={{width: '318px', height: '548px'}} src={iframeUrl}></iframe>
                             </div>
                         </div>
                     </div>
