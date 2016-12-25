@@ -6,12 +6,27 @@ import classes              from './ComponentDoc.scss'
 
 export default class ComponentDoc extends Component {
 
+    constructor (props){
+        super(props)
+
+        this.state = {
+            currentIndex : 0
+        }
+    }
+
     componentDidMount (){
         
     }
 
+    handleClickDemo = (i, e) => {
+        this.setState({
+            currentIndex : i
+        })
+    }
+
     render (){
         const { doc : { meta, description, intro, api } } = this.props
+        const { currentIndex } = this.state
         const demos = (demosData[meta.fileName] || []).filter(demo => !demo.meta.hidden)
         const demoSort = demos.sort((a, b) => parseInt(a.meta.order, 10) - parseInt(b.meta.order, 10) )
 
@@ -34,13 +49,21 @@ export default class ComponentDoc extends Component {
                     <div className={classes.demo_code}>
                         {
                             demoSort.map((data, i) =>
-                                <Demo key={i} {...data} pathname={location.pathname} />        
+                                <Demo key={i} {...data} pathname={location.pathname} onClick={e => this.handleClickDemo(i, e)} active={currentIndex === i} />
                             )
                         }
                     </div>
 
                     <div className={classes.demo_preview}>  
-                        Preview
+                        <div className={classes.demo_preview_wrapper}>
+                            <div className={classes.demo_preview_header}>
+                                <img width="290px" src="https://os.alipayobjects.com/rmsportal/VfVHYcSUxreetec.png" style={{'margin': '0px 2px'}} />
+                            </div>
+                            
+                            <div className={classes.demo_preview_scroller}>
+                                <iframe id="demoFrame" name="demoFrame" style={{width: '318px', height: '548px'}}></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

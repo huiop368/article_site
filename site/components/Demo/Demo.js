@@ -15,11 +15,20 @@ export default class Demo extends Component {
     }
 
     handleClickArrow = (e) => {
+        e.stopPropagation()
         this.setState({expand : !this.state.expand})
     }
 
+    handleClickBox = (e) => {
+        const { onClick } = this.props
+
+        if('function' === typeof onClick){
+            onClick()
+        }
+    }
+
     render (){
-        const { meta, pathname, intro, highlightedCode, preview } = this.props
+        const { meta, pathname, intro, highlightedCode, preview, active } = this.props
         const { expand } = this.state
 
         const highlightClass = classname({
@@ -29,6 +38,7 @@ export default class Demo extends Component {
 
         const codeBoxClass = classname({
             'code-box' : true,
+            'code-box-target' : active,
             'expand' : expand
         })
 
@@ -38,7 +48,7 @@ export default class Demo extends Component {
         })
 
         return (
-            <section className={codeBoxClass}>
+            <section className={codeBoxClass} onClick={this.handleClickBox}>
                 <section className="code-box-meta markdown">
                     <div className="code-box-title">{meta.title}</div>
                     {
