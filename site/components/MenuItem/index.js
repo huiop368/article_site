@@ -1,3 +1,3 @@
-import MenuItem from './MenuItem'
+import MenuList from './MenuList'
 
-export default MenuItem
+export default MenuList

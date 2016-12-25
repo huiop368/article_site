@@ -1,61 +1,17 @@
-import React, {Component} from 'react'
-import { IndexLink, Link } from 'react-router'
-import classes from './MenuItem.scss'
+import React, {Component}   from 'react'
+import { Icon }             from 'react-fa'
+import { IndexLink, Link }  from 'react-router'
+import classnames            from 'classnames'
+import classes              from './MenuItem.scss'
 
 export default class MenuItem extends Component {
 
-    get topLevelMenu(){
-        const { itemObj } = this.props
-        const ret = itemObj.topLevel.topLevel
+    constructor (props){
+        super(props)
 
-        return (
-            <div>
-                <ul className={classes.menu_list}>
-                    {
-                        ret.map((item, i) => {
-                            //const path = item.fileName.slice(0, item.fileName.lastIndexOf('/'))
-                            const path = this.normalize(item.fileName)
-                            return <li key={i}><Link to={`/${path}`} activeClassName={classes.active_link}>{item.english} {item.chinese || ''}</Link></li>
-                        })
-                    }
-                </ul>
-            </div>        
-        )
-    }
-
-    get othersMenu (){
-        const { itemObj } = this.props
-        let keys = Object.keys(itemObj)
-        keys.splice(keys.indexOf('topLevel'), 1)
-
-        let ret = []
-
-        keys.forEach( key => {
-            const obj = itemObj[key]
-            const arr = Object.keys(obj)
-
-            arr.map( (type, i) => {
-                const val = obj[type]
-
-                ret.push(
-                    <div key={i} className={classes.menu_sub_wrapper}>
-                        <h3>{type}</h3>
-                        <ul className={classes.menu_list}>
-                            {
-                                val.map((item, i) => {
-                                    //const path = item.fileName.slice(0, item.fileName.lastIndexOf('/'))
-                                    const path = this.normalize(item.fileName)
-                                    return <li key={i}><Link to={`/${path}`} activeClassName={classes.active_link}>{item.english} {item.chinese || ''}</Link></li>
-                                })
-                            }
-                        </ul>
-                    </div>
-                )
-            })
-        })
-        
-
-        return <div>{ret}</div>
+        this.state = {
+            expand : true
+        }
     }
 
     normalize (fileName){
@@ -64,12 +20,42 @@ export default class MenuItem extends Component {
 
         return fileName.slice(0, fileName.lastIndexOf(sign))
     }
+
+    handleClickTitle = (e) => {
+        this.setState({expand : !this.state.expand})
+    }
     
     render (){
+        const { submenu, title, items } = this.props
+        const { expand } = this.state
+
+        const menuClass = classnames({
+            [classes.menu_sub_wrapper] : submenu
+        })
+
+        const menuListClass = classnames({
+            [classes.menu_list] : true,
+            [classes.menu_list_expand] : expand
+        })
+
+        const arrowClass = classnames({
+            [classes.arrow] : true,
+            [classes.arrow_expand] : expand
+        })
+
         return (
-            <div>
-                {this.topLevelMenu}
-                {this.othersMenu}
+            <div className={menuClass}>
+                {
+                    title ? <h3 className={classes.title_area} onClick={this.handleClickTitle}>{ title } <Icon name="angle-down" className={arrowClass} /></h3> : null
+                }
+                <ul className={menuListClass}>
+                    {
+                        items.map((item, i) => {
+                            const path = this.normalize(item.fileName)
+                            return <li key={i}><Link to={`/${path}`} activeClassName={classes.active_link}>{item.english} {item.chinese || ''}</Link></li>
+                        })
+                    }
+                </ul>
             </div>
         )
     }

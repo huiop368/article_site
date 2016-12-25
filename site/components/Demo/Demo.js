@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import toReactComponent     from 'jsonml-to-react-component'
+import { Icon }             from 'react-fa'
 import classname            from 'classnames'
 import classes              from './Demo.scss'
 
@@ -31,6 +32,11 @@ export default class Demo extends Component {
             'expand' : expand
         })
 
+        const arrowClass = classname({
+            [classes.arrow] : true,
+            [classes.arrow_expand] : expand
+        })
+
         return (
             <section className={codeBoxClass}>
                 <section className="code-box-meta markdown">
@@ -38,7 +44,7 @@ export default class Demo extends Component {
                     {
                         toReactComponent(['div'].concat(intro))
                     }
-                    <span className="bdicon bdicon-arrow" onClick={this.handleClickArrow}></span>
+                    <Icon name="chevron-down" className={arrowClass} onClick={this.handleClickArrow} />
                 </section>
 
                 <section className={highlightClass}>

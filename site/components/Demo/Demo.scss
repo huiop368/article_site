@@ -1,9 +1,10 @@
-:global{
-    .code-box-meta{
-        .bdicon-arrow{
-            position : absolute;
-            right: 20px;
-            bottom: 15px;
-        }
-    }
+.arrow{
+    position : absolute;
+    right: 20px;
+    bottom: 15px;
+    transition : all .3s ease;
+}
+
+.arrow_expand{
+    transform : rotate(180deg)
 }
