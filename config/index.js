@@ -22,6 +22,7 @@ const config = {
   dir_dist   : 'dist',
   dir_server : 'server',
   dir_test   : 'tests',
+  dir_demo   : 'preview',
 
   // ----------------------------------
   // Server Configuration
@@ -116,7 +117,8 @@ const base = (...args) =>
 config.utils_paths = {
   base   : base,
   client : base.bind(null, config.dir_client),
-  dist   : base.bind(null, config.dir_dist)
+  dist   : base.bind(null, config.dir_dist),
+  demo   : base.bind(null, config.dir_demo)
 }
 
 // ========================================================

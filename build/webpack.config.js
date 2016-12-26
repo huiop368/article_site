@@ -36,10 +36,15 @@ const APP_ENTRY_PATHS = [
   paths.client('main.js')
 ]
 
+const DEMO_ENTRY_PATHS = [
+  paths.demo('entry/index.js')
+]
+
 webpackConfig.entry = {
   app: __DEV__
     ? APP_ENTRY_PATHS.concat(`webpack-hot-middleware/client?path=${config.compiler_public_path}__webpack_hmr`)
     : APP_ENTRY_PATHS,
+  demo : DEMO_ENTRY_PATHS,
   vendor: config.compiler_vendor
 }
 
@@ -62,7 +67,20 @@ webpackConfig.plugins = [
     hash: false,
     //favicon: paths.client('static/images/favicon.ico'),
     filename: 'index.html',
-    inject: 'body',
+    inject: true,
+    chunks : ['app', 'vendor'],
+    minify: {
+      collapseWhitespace: true
+    }
+  }),
+
+  new HtmlWebpackPlugin({
+    template: paths.demo('index.html'),
+    hash: false,
+    //favicon: paths.client('static/images/favicon.ico'),
+    filename: 'preview.html',
+    inject: true,
+    chunks : ['demo', 'vendor'],
     minify: {
       collapseWhitespace: true
     }
