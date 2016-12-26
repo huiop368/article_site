@@ -8,13 +8,13 @@
     .sider_bar{
         float : left;
         width : 220px;
-        margin-right :20px;
         background-color : #fff;
-        border-right : 1px solid #efefef;
     }
 
     .container{
         padding :0 20px 10px 0;
+        border-left : 1px solid #efefef;
+        padding-left :20px;
         overflow : hidden;
     }
 }

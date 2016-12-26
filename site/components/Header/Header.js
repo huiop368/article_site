@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import { IndexLink, Link } from 'react-router'
+import Searchbox            from 'components/Searchbox'
 import classnames           from 'classnames'
 import classes from './Header.scss'
+
 
 export default class Header extends Component {
     
@@ -22,7 +24,7 @@ export default class Header extends Component {
                     <h1>Logo</h1>
                 </div>
                 <div>
-                    <div className={classes.search_box}></div>
+                    <Searchbox />
                     <ul className={classes.nav_bar}>
                         <li className={classes.nav_item}>
                             <IndexLink to='/' activeClassName={classes.nav_item_active}>

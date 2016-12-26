@@ -1,0 +1,66 @@
+.search_box{
+    position: relative;
+    border-left: 1px solid #ebedee;
+    float: left;
+    height: 18px;
+    line-height: 16px;
+    padding-left: 25px;
+    margin: 27px auto 0;
+
+    input{
+        outline: 0;
+        border: 0;
+    }
+
+    .search_result{
+        width: 230px;
+        background-color: #fff;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+        box-sizing: border-box;
+        z-index: 1050;
+        position: absolute;
+        outline: none;
+        overflow: hidden;
+        font-size: 14px;
+        transition: all 0.3s ease-out;
+        transform-origin: top;
+        transform: scaleY(0);
+        opacity: 0;
+    }
+
+    .search_result_display{
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+    .search_list{
+        outline: none;
+        max-height: 200px;
+        overflow: auto;
+    }
+
+    .search_list_link{
+        display : block;
+        padding: 7px 15px;
+        font-weight: 400;
+        font-size : 12px;
+        color: #666;
+        cursor: pointer;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        transition: background .3s ease;
+
+        &:hover{
+            background: rgba(30, 139, 247, 0.07);
+        }
+    }
+
+    .search_list_item_chinese{
+        float: right;
+        font-size: 12px;
+        margin-left: 6px;
+        font-weight: 400;
+        opacity: .67
+    }
+}

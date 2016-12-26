@@ -38,7 +38,10 @@ function buildCommon(dirs, outputFile, flag) {
     mds.forEach(fileName => {
         const localeId = path.basename(fileName, '.md').split('.')[1];
         const simplifiedFileName = fileName.replace(`.${localeId}`, '');
-        content += `'${simplifiedFileName}',`;
+
+        const requirePath = path.relative(path.dirname(outputFile), fileName);
+        //content += `'${simplifiedFileName}',`;
+        content += `\n require('${requirePath}'),`;
     });
     content += '\n]';
 
@@ -106,7 +109,8 @@ function buildDemosList(dirs, outputPath) {
     //   }
     // });
 
-    const docDirList = configs.docDirList
+
+    const {docDirList, searchScope, demoDir } = configs
     
     docDirList.forEach(dir => {
         const ret = Array.isArray(dir) ? dir : [dir]
@@ -114,9 +118,16 @@ function buildDemosList(dirs, outputPath) {
 
         buildCommon(dirs, `./_data/${ret[0]}.js`)
     })
+
+
+    if(Array.isArray(searchScope)){
+        buildCommon(searchScope.map(name => `./docs/${name}`), './_data/search-list.js', true)
+    }else if(searchScope && 'boolean' === typeof searchScope){
+       const dirs = fs.readdirSync('./docs')
+       
+       buildCommon(dirs.map(name => `./docs/${name}`), './_data/search-list.js', true)
+    }
     
-    
-    const demoDir = configs.demoDir
 
     if(demoDir){
         // Build demo list
