@@ -163,7 +163,7 @@ webpackConfig.module.loaders = [{
 },
 {
     test : /\.md$/,
-    loaders : ['babel', require.resolve('antd-md-loader')]
+    loaders : ['babel', require.resolve('md-meta-loader')]
 }
 // {
 //     test : /\.md$/,
