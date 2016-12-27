@@ -65,7 +65,7 @@ webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     template: paths.client('index.html'),
     hash: false,
-    //favicon: paths.client('static/images/favicon.ico'),
+    favicon: paths.client('static/favicon.png'),
     filename: 'index.html',
     inject: true,
     chunks : ['app', 'vendor'],
@@ -77,7 +77,7 @@ webpackConfig.plugins = [
   new HtmlWebpackPlugin({
     template: paths.demo('index.html'),
     hash: false,
-    //favicon: paths.client('static/images/favicon.ico'),
+    favicon: paths.client('static/favicon.png'),
     filename: 'preview.html',
     inject: true,
     chunks : ['demo', 'vendor'],
